@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg-start: 10 15 36; /* #0A0F24 */
+  --color-bg-mid: 48 43 99; /* #302b63 - A deep violet */
+  --color-accent-purple: 123 92 255; /* #7B5CFF */
+  --color-accent-aqua: 29 211 248; /* #1DD3F8 */
+  --color-accent-red: 255 79 90; /* #FF4F5A */
+}
+
+@keyframes animated-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body {
+  background: linear-gradient(160deg, rgb(var(--color-bg-start)) 0%, rgb(var(--color-bg-mid)) 50%, rgb(var(--color-accent-aqua)) 100%);
+  background-size: 400% 400%;
+  animation: animated-gradient 20s ease infinite;
+  color: #E0E0E0;
+  font-family: var(--font-sans);
+  transition: font-size 0.3s ease;
+}
+
+.large-font {
+  font-size: 1.25rem;
+}
+
+.large-font h1 { font-size: 2.5rem; }
+.large-font h2 { font-size: 2rem; }
+.large-font h3 { font-size: 1.75rem; }
+.large-font p { font-size: 1.25rem; }
+.large-font button { font-size: 1.25rem; }
+.large-font input { font-size: 1.25rem; }
+.large-font select { font-size: 1.25rem; }
+.large-font .text-sm { font-size: 1rem; }
+.large-font .text-xs { font-size: 0.875rem; }
+.large-font .text-lg { font-size: 1.5rem; }
+.large-font .text-xl { font-size: 1.75rem; }
+.large-font .text-2xl { font-size: 2.25rem; }
+.large-font .text-3xl { font-size: 3rem; }
+
+@keyframes calm-glow {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(var(--color-accent-purple), 0.3), 0 0 12px rgba(var(--color-accent-purple), 0.2);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(var(--color-accent-purple), 0.6), 0 0 28px rgba(var(--color-accent-purple), 0.4);
+  }
+}
+.animate-calm-glow {
+  animation: calm-glow 3s ease-in-out infinite;
+}
+
+@keyframes sonar-ping {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(var(--color-accent-red), 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 25px rgba(var(--color-accent-red), 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(var(--color-accent-red), 0);
+  }
+}
+.animate-pulse-red {
+  animation: sonar-ping 2s infinite;
+  background-color: rgb(var(--color-accent-red));
+}
+
+@keyframes voice-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(var(--color-accent-aqua), 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 15px rgba(var(--color-accent-aqua), 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(var(--color-accent-aqua), 0);
+  }
+}
+.animate-voice-pulse {
+  animation: voice-pulse 1.5s infinite;
+}
+
+@keyframes move-car {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+#car {
+  offset-path: path("M20,70 Q60,30 100,70 T180,70 Q220,110 260,70 T340,70");
+  animation: move-car 30s linear infinite;
+  motion-rotation: auto;
+}
+.map-path {
+  animation: dash-flow 1s linear infinite;
+}
+
+/* Accessibility Modes */
+.contrast-high {
+  filter: contrast(1.5) brightness(1.1);
+}
+
+.contrast-high * {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.colorblind-protanopia {
+  filter: url('#protanopia-filter');
+}
+
+.colorblind-deuteranopia {
+  filter: url('#deuteranopia-filter');
+}
+
+.colorblind-tritanopia {
+  filter: url('#tritanopia-filter');
+}
+
+/* Custom scrollbar */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+.ripple:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

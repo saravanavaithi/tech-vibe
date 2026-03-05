@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aura | Smart Guidance System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Mobile Web App Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Aura">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <style>
+      :root {
+        --color-bg-start: 10 15 36; /* #0A0F24 */
+        --color-bg-mid: 48 43 99; /* #302b63 - A deep violet */
+        --color-accent-purple: 123 92 255; /* #7B5CFF */
+        --color-accent-aqua: 29 211 248; /* #1DD3F8 */
+        --color-accent-red: 255 79 90; /* #FF4F5A */
+      }
+
+      @keyframes animated-gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      body {
+        background: linear-gradient(160deg, rgb(var(--color-bg-start)) 0%, rgb(var(--color-bg-mid)) 50%, rgb(var(--color-accent-aqua)) 100%);
+        background-size: 400% 400%; /* Larger size for smoother transition */
+        animation: animated-gradient 20s ease infinite;
+        color: #E0E0E0;
+      }
+      
+      @keyframes calm-glow {
+        0%, 100% {
+          box-shadow: 0 0 6px rgba(var(--color-accent-purple), 0.3), 0 0 12px rgba(var(--color-accent-purple), 0.2);
+        }
+        50% {
+          box-shadow: 0 0 16px rgba(var(--color-accent-purple), 0.6), 0 0 28px rgba(var(--color-accent-purple), 0.4);
+        }
+      }
+      .animate-calm-glow {
+        animation: calm-glow 3s ease-in-out infinite;
+      }
+
+      @keyframes sonar-ping {
+        0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(var(--color-accent-red), 0.7);
+        }
+        70% {
+          transform: scale(1);
+          box-shadow: 0 0 0 25px rgba(var(--color-accent-red), 0);
+        }
+        100% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(var(--color-accent-red), 0);
+        }
+      }
+      .animate-pulse-red {
+        animation: sonar-ping 2s infinite;
+        background-color: rgb(var(--color-accent-red));
+      }
+      
+      @keyframes voice-pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(var(--color-accent-aqua), 0.7);
+        }
+        70% {
+          transform: scale(1);
+          box-shadow: 0 0 0 15px rgba(var(--color-accent-aqua), 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(var(--color-accent-aqua), 0);
+        }
+      }
+      .animate-voice-pulse {
+        animation: voice-pulse 1.5s infinite;
+      }
+
+      @keyframes move-car {
+        0% {
+          offset-distance: 0%;
+        }
+        100% {
+          offset-distance: 100%;
+        }
+      }
+
+      @keyframes dash-flow {
+        to {
+          stroke-dashoffset: -20;
+        }
+      }
+
+      #car {
+        offset-path: path("M20,70 Q60,30 100,70 T180,70 Q220,110 260,70 T340,70");
+        animation: move-car 30s linear infinite;
+        motion-rotation: auto; /* Car now turns to follow the path */
+      }
+      .map-path {
+        animation: dash-flow 1s linear infinite;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.21.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react-icons/": "https://aistudiocdn.com/react-icons@^5.5.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+    
+    <!-- Accessibility Filters -->
+    <svg style="display: none;">
+      <defs>
+        <filter id="protanopia-filter">
+          <feColorMatrix type="matrix" values="0.567, 0.433, 0, 0, 0 0.558, 0.442, 0, 0, 0 0, 0.242, 0.758, 0, 0 0, 0, 0, 1, 0" />
+        </filter>
+        <filter id="deuteranopia-filter">
+          <feColorMatrix type="matrix" values="0.625, 0.375, 0, 0, 0 0.7, 0.3, 0, 0, 0 0, 0.3, 0.7, 0, 0 0, 0, 0, 1, 0" />
+        </filter>
+        <filter id="tritanopia-filter">
+          <feColorMatrix type="matrix" values="0.95, 0.05, 0, 0, 0 0, 0.433, 0.567, 0, 0 0, 0.475, 0.525, 0, 0 0, 0, 0, 1, 0" />
+        </filter>
+      </defs>
+    </svg>
+  </body>
+</html>

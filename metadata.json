@@ -1,0 +1,9 @@
+{
+  "name": "Aura | Smart Guidance System",
+  "description": "A universal ride booking experience with voice-only accessibility and standard modes, designed for all users including those with physical challenges.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
